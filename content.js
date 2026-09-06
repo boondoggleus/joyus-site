@@ -58,7 +58,8 @@ window.JOYUS_CONTENT = {
     { q: "To see a world in a grain of sand, and a heaven in a wild flower.", a: "William Blake" },
     { q: "A journey of a thousand miles begins with a single step.", a: "Lao Tzu" },
     { q: "Fall seven times, stand up eight.", a: "Japanese proverb" },
-    { q: "When the winds of change blow, some build walls and others build windmills.", a: "Chinese proverb" }
+    { q: "When the winds of change blow, some build walls and others build windmills.", a: "Chinese proverb" },
+    { q: "The poetry of the earth is never dead.", a: "John Keats" }
   ],
 
   photos: [
@@ -81,7 +82,8 @@ window.JOYUS_CONTENT = {
     "1426170042593-200f250dfdaf",
     "1440581572325-0bea30075d9d",
     "1470115636492-6d2b56f9146d",
-    "1600245892018-3826141b0822"
+    "1600245892018-3826141b0822",
+    "1611012341156-f7f8e6a2c7e2"
   ]
 
 };
