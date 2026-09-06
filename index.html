@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>joy.us — Connecting hearts to vetted charities</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
+  :root{
+    --navy:#16263F;
+    --blue:#2F5DFF;
+    --blue-deep:#23408e;
+    --gold:#E5A23C;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{height:100%;}
+  body{font-family:'Poppins',system-ui,Arial,sans-serif;color:#fff;background:#0b1626;}
+
+  .hero{
+    position:relative;
+    width:100%;
+    min-height:100svh;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    background:linear-gradient(135deg,#1c3a52,#16263F 60%,#0b1626);
+    background-size:cover;
+    background-position:center;
+    transition:background-image .6s ease;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;inset:0;
+    background:linear-gradient(180deg,
+      rgba(11,22,40,.25) 0%,
+      rgba(11,22,40,.10) 35%,
+      rgba(11,22,40,.55) 100%);
+    z-index:1;pointer-events:none;
+  }
+
+  header{
+    position:relative;z-index:3;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:26px clamp(20px,5vw,64px);
+  }
+  .logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+  .logo svg{width:30px;height:30px;flex:none;}
+  .logo span{font-size:24px;font-weight:700;color:#fff;letter-spacing:.2px;}
+  nav{display:flex;align-items:center;gap:clamp(16px,2.2vw,38px);}
+  nav a{color:#fff;text-decoration:none;font-size:16px;font-weight:500;opacity:.92;transition:opacity .2s;}
+  nav a:hover{opacity:1;text-decoration:underline;text-underline-offset:5px;}
+  .nav-toggle{display:none;background:none;border:0;cursor:pointer;}
+  .nav-toggle span{display:block;width:26px;height:2px;background:#fff;margin:5px 0;border-radius:2px;}
+
+  .hero-body{
+    position:relative;z-index:3;
+    flex:1;
+    display:flex;align-items:flex-end;justify-content:space-between;
+    gap:24px;
+    padding:0 clamp(20px,5vw,64px) clamp(34px,5vh,64px);
+  }
+  .quote{max-width:640px;}
+  .quote p{
+    font-size:clamp(24px,3vw,40px);
+    font-weight:700;line-height:1.18;
+    text-shadow:0 2px 22px rgba(0,0,0,.45);
+  }
+  .quote p .mark{color:var(--gold);}
+  .quote .author{
+    margin-top:10px;font-size:clamp(13px,1.4vw,17px);
+    font-weight:500;color:#eef2ff;letter-spacing:.3px;
+    text-shadow:0 2px 16px rgba(0,0,0,.5);
+  }
+  .cta{
+    flex:none;
+    display:inline-block;
+    background:var(--blue);color:#fff;text-decoration:none;
+    font-weight:600;font-size:clamp(15px,1.4vw,18px);
+    padding:18px 30px;border-radius:40px;
+    box-shadow:0 12px 30px rgba(0,0,0,.28);
+    transition:transform .15s ease, background .2s;
+    white-space:nowrap;text-align:center;
+  }
+  .cta:hover{background:var(--blue-deep);transform:translateY(-2px);}
+
+  .credit{
+    position:absolute;right:14px;bottom:8px;z-index:3;
+    font-size:10px;color:rgba(255,255,255,.55);letter-spacing:.4px;
+  }
+
+  @media (max-width:820px){
+    nav{position:absolute;top:74px;right:18px;left:18px;
+      flex-direction:column;align-items:flex-start;gap:18px;
+      background:rgba(11,22,40,.92);backdrop-filter:blur(6px);
+      padding:22px 24px;border-radius:16px;display:none;}
+    nav.open{display:flex;}
+    .nav-toggle{display:block;z-index:4;}
+    .hero-body{flex-direction:column;align-items:flex-start;gap:22px;
+      padding-bottom:40px;}
+    .cta{align-self:stretch;}
+    .quote p{font-size:clamp(22px,6.4vw,30px);}
+  }
+</style>
+</head>
+<body>
+
+  <section class="hero" id="hero">
+    <header>
+      <a class="logo" href="index.html">
+        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <g fill="none" stroke="#E5A23C" stroke-width="2.4" stroke-linecap="round">
+            <line x1="24" y1="4" x2="24" y2="11"/>
+            <line x1="24" y1="37" x2="24" y2="44"/>
+            <line x1="4" y1="24" x2="11" y2="24"/>
+            <line x1="37" y1="24" x2="44" y2="24"/>
+            <line x1="10" y1="10" x2="15" y2="15"/>
+            <line x1="33" y1="33" x2="38" y2="38"/>
+            <line x1="38" y1="10" x2="33" y2="15"/>
+            <line x1="15" y1="33" x2="10" y2="38"/>
+          </g>
+          <circle cx="24" cy="24" r="8.5" fill="#E5A23C"/>
+        </svg>
+        <span>joy.us</span>
+      </a>
+      <button class="nav-toggle" aria-label="Menu" onclick="document.getElementById('nav').classList.toggle('open')">
+        <span></span><span></span><span></span>
+      </button>
+      <nav id="nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="charity-profiles.html">Charity Profiles</a>
+        <a href="goodness-lists.html">Goodness Lists</a>
+        <a href="archive.html">Archive</a>
+      </nav>
+    </header>
+
+    <div class="hero-body">
+      <div class="quote">
+        <p id="jd-quote"></p>
+        <div class="author" id="jd-author"></div>
+      </div>
+      <a class="cta" href="charity-profiles.html">Explore Charity Profiles</a>
+    </div>
+
+    <div class="credit">Photos via Unsplash</div>
+  </section>
+
+<script src="content.js"></script>
+<script>
+  var QUOTES = window.JOYUS_CONTENT.quotes;
+  var PHOTOS = window.JOYUS_CONTENT.photos;
+
+  var day  = Math.floor(Date.now() / 8.64e7);
+  var qi   = ((day % QUOTES.length) + QUOTES.length) % QUOTES.length;
+  var pi   = ((day % PHOTOS.length) + PHOTOS.length) % PHOTOS.length;
+  var item = QUOTES[qi];
+
+  document.getElementById('jd-quote').innerHTML =
+    '<span class="mark">&ldquo;</span>' + item.q + '<span class="mark">&rdquo;</span>';
+  document.getElementById('jd-author').textContent = '— ' + item.a;
+
+  var url = 'https://images.unsplash.com/photo-' + PHOTOS[pi] +
+            '?auto=format&fit=crop&w=1920&q=80&fm=jpg';
+  var pre = new Image();
+  pre.onload = function(){ document.getElementById('hero').style.backgroundImage = 'url("' + url + '")'; };
+  pre.src = url;
+</script>
+</body>
+</html>

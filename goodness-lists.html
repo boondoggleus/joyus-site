@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Goodness Lists — joy.us</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+  :root{--navy:#16263F;--gold:#E2A23E;--blue:#2F5DFF;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Poppins',system-ui,Arial,sans-serif;color:var(--navy);background:#fff;min-height:100vh;display:flex;flex-direction:column;}
+  .site-header{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:14px clamp(20px,5vw,64px);background:#fff;box-shadow:0 6px 24px rgba(22,38,63,.08);}
+  .logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+  .logo svg{width:30px;height:30px;}
+  .logo span{font-size:24px;font-weight:700;color:var(--navy);}
+  nav{display:flex;gap:clamp(16px,2.4vw,40px);}
+  nav a{color:var(--navy);text-decoration:none;font-size:16px;font-weight:500;}
+  nav a:hover,nav a.active{text-decoration:underline;text-underline-offset:5px;}
+  main{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:150px 24px 90px;}
+  .kicker{font-size:14px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+  main h1{font-size:clamp(30px,5vw,52px);font-weight:700;margin-bottom:14px;}
+  main p{font-size:18px;color:#5a6b82;max-width:540px;line-height:1.6;}
+  footer{background:#0e1b2e;color:#7d8ba3;text-align:center;padding:24px;font-size:13px;}
+  footer .pledge{color:var(--gold);}
+  @media(max-width:760px){nav{display:none;}}
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="index.html">
+      <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <g fill="none" stroke="#E2A23E" stroke-width="2.6" stroke-linecap="round">
+          <line x1="24" y1="4" x2="24" y2="11"/><line x1="24" y1="37" x2="24" y2="44"/>
+          <line x1="4" y1="24" x2="11" y2="24"/><line x1="37" y1="24" x2="44" y2="24"/>
+          <line x1="38" y1="10" x2="33" y2="15"/><line x1="15" y1="33" x2="10" y2="38"/>
+          <line x1="10" y1="10" x2="15" y2="15"/><line x1="33" y1="33" x2="38" y2="38"/>
+        </g>
+        <circle cx="24" cy="24" r="8.5" fill="#E2A23E"/>
+      </svg>
+      <span>joy.us</span>
+    </a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="charity-profiles.html">Charity Profiles</a>
+      <a href="goodness-lists.html" class="active">Goodness Lists</a>
+      <a href="archive.html">Archive</a>
+    </nav>
+  </header>
+  <main>
+    <div class="kicker">Coming soon</div>
+    <h1>Goodness Lists</h1>
+    <p>Community-ranked "best of" lists worth sharing — starting with Top 100 Movies and Top 100 Books. Building them now.</p>
+  </main>
+  <footer><span class="pledge">We curate efficient charities and point you to give directly — joy.us never handles your money.</span></footer>
+</body>
+</html>
