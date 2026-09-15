@@ -59,7 +59,8 @@ window.JOYUS_CONTENT = {
     { q: "A journey of a thousand miles begins with a single step.", a: "Lao Tzu" },
     { q: "Fall seven times, stand up eight.", a: "Japanese proverb" },
     { q: "When the winds of change blow, some build walls and others build windmills.", a: "Chinese proverb" },
-    { q: "The poetry of the earth is never dead.", a: "John Keats" }
+    { q: "The poetry of the earth is never dead.", a: "John Keats" },
+    { q: "Go confidently in the direction of your dreams. Live the life you have imagined.", a: "Henry David Thoreau" }
   ],
 
   photos: [
@@ -83,7 +84,8 @@ window.JOYUS_CONTENT = {
     "1440581572325-0bea30075d9d",
     "1470115636492-6d2b56f9146d",
     "1600245892018-3826141b0822",
-    "1611012341156-f7f8e6a2c7e2"
+    "1611012341156-f7f8e6a2c7e2",
+    "1571161535093-e7642c4bd0c8"
   ]
 
 };
