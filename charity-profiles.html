@@ -54,7 +54,7 @@
   .give{background:var(--mist);border-radius:16px;padding:26px clamp(20px,3vw,30px);margin-top:30px;}
   .give h3{font-size:19px;font-weight:700;margin-bottom:4px;}
   .give .sub{font-size:14px;color:#5a6b82;margin-bottom:18px;}
-  .give-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;}
+  .give-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;}
   .give-btn{display:flex;flex-direction:column;gap:2px;background:#fff;border:1px solid #e2e7f0;border-radius:12px;padding:16px 18px;text-decoration:none;transition:border-color .2s,transform .12s,box-shadow .2s;}
   .give-btn:hover{border-color:var(--blue);transform:translateY(-2px);box-shadow:0 10px 22px rgba(22,38,63,.08);}
   .give-btn .g-name{font-weight:700;color:var(--navy);font-size:16px;}
@@ -63,7 +63,39 @@
   .give-btn.primary .g-name{color:#fff;}
   .give-btn.primary .g-note{color:#dbe4ff;}
 
-  /* upcoming grid */
+  /* profile carousel */
+  .carousel{--bleed:24px;margin-bottom:56px;scroll-margin-top:90px;}
+  .car-stage{display:grid;grid-template-columns:auto minmax(0,1fr) auto;grid-template-areas:"prev view next" ". nav .";column-gap:14px;row-gap:6px;align-items:center;}
+  .car-viewport{grid-area:view;overflow:hidden;overflow:clip;margin:-20px calc(-1 * var(--bleed)) 0;}
+  .car-track{display:block;}
+  .car-slide{padding:20px var(--bleed) 44px;scroll-margin-top:90px;}
+  .car-slide .profile{margin-bottom:0;height:100%;}
+  .carousel.ready .car-track{display:flex;align-items:stretch;transition:transform .45s ease;}
+  .carousel.ready .car-slide{flex:0 0 100%;min-width:0;}
+  .car-arrow,.car-nav{display:none;}
+  .carousel.ready .car-arrow{display:flex;}
+  .carousel.ready .car-nav{display:flex;}
+  .car-arrow{position:relative;z-index:2;align-items:center;justify-content:center;width:48px;height:48px;border-radius:50%;border:1px solid #e2e7f0;background:#fff;color:var(--navy);cursor:pointer;box-shadow:0 6px 16px rgba(22,38,63,.08);transition:border-color .2s,color .2s,transform .12s;}
+  .car-arrow:hover{border-color:var(--blue);color:var(--blue);}
+  .car-arrow:active{transform:scale(.96);}
+  .car-arrow:focus-visible,.car-dot:focus-visible{outline:3px solid var(--gold);outline-offset:3px;}
+  .car-arrow svg{width:22px;height:22px;}
+  .car-arrow.prev{grid-area:prev;}
+  .car-arrow.next{grid-area:next;}
+  .car-nav{grid-area:nav;flex-direction:column;align-items:center;gap:8px;}
+  .car-dots{display:flex;gap:4px;}
+  .car-dot{width:28px;height:28px;border:0;background:none;cursor:pointer;display:flex;align-items:center;justify-content:center;border-radius:50%;}
+  .car-dot::before{content:"";width:10px;height:10px;border-radius:50%;background:#d3dae6;transition:background .2s,transform .2s;}
+  .car-dot:hover::before{background:#9aa6b8;}
+  .car-dot[aria-current="true"]::before{background:var(--blue);transform:scale(1.2);}
+  .car-count{font-size:14px;font-weight:600;color:#5a6b82;}
+  .more-note{font-size:16px;color:#5a6b82;margin:-28px 0 56px;text-align:center;}
+  @media(max-width:860px){
+    .carousel{--bleed:12px;}
+    .car-stage{grid-template-areas:"view view view" "prev nav next";}
+    .give-grid{grid-template-columns:1fr;}
+  }
+  @media(prefers-reduced-motion:reduce){.carousel.ready .car-track{transition:none;}}
   /* ===== standards + results ===== */
   .standards,.results{margin-bottom:56px;scroll-margin-top:90px;}
   .standards h2,.results h2{font-size:clamp(22px,2.6vw,30px);font-weight:700;margin-bottom:16px;}
@@ -71,6 +103,8 @@
   .checks li{font-size:clamp(16px,1.4vw,18px);line-height:1.65;color:#33445c;margin-bottom:12px;padding-left:4px;}
   .checks li::marker{color:var(--gold);font-weight:700;}
   .checks strong{color:var(--navy);font-weight:600;}
+  .checks a{color:var(--blue);text-decoration:none;font-weight:600;border-bottom:1px solid rgba(47,93,255,.35);}
+  .checks a:hover{border-bottom-color:var(--blue);}
   .std-note{font-size:16px;line-height:1.7;color:#5a6b82;max-width:760px;margin-top:6px;}
   .rv-box{margin-top:26px;background:#e1f5ee;border-radius:18px;padding:26px clamp(22px,3vw,32px);max-width:760px;}
   .rv-mark{font-size:15px;font-weight:700;color:#12795a;margin-bottom:8px;}
@@ -84,11 +118,6 @@
   .r-desc{font-size:15px;line-height:1.55;color:#4a5972;flex:1;}
   .r-status{align-self:flex-start;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);}
 
-  .more h2{font-size:22px;font-weight:700;margin-bottom:18px;}
-  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;}
-  .card{border:1px dashed #d3dae6;border-radius:16px;padding:24px;background:#fbfcfe;}
-  .card .name{font-weight:700;font-size:18px;color:#4a5972;}
-  .card .soon{display:inline-block;margin-top:10px;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);}
 
   footer{background:#0e1b2e;color:#aebbd0;padding:44px clamp(20px,5vw,64px);margin-top:20px;}
   .foot-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px;align-items:center;}
@@ -152,7 +181,7 @@
       <ol class="checks">
         <li><strong>Registered and in good standing.</strong> A 501(c)(3) whose status we confirm against its IRS filings.</li>
         <li><strong>At least 75 cents of every dollar goes to programs.</strong> Taken from its most recent Form 990.</li>
-        <li><strong>Independently rated.</strong> Four stars from Charity Navigator. Where Charity Navigator hasn’t scored it, it must hold a Candid Gold or Platinum seal plus ECFA or BBB accreditation, and we review its three most recent Form 990 filings and name the years and figures checked on its profile.</li>
+        <li><strong>Independently rated.</strong> Four stars from <a href="https://www.charitynavigator.org/" target="_blank" rel="noopener">Charity Navigator</a>. Where Charity Navigator hasn’t scored it, it must hold a Candid Gold or Platinum seal plus ECFA or BBB accreditation, and we review its three most recent Form 990 filings and name the years and figures checked on its profile.</li>
         <li><strong>No fraud or governance scandal.</strong> We search the news for investigations, misuse of funds, and governance failures.</li>
         <li><strong>It serves the people we exist for.</strong> Its programs, not just its mission statement, serve those born with lifelong developmental or physical conditions, children born into crisis or without family, and the caregivers who carry that weight.</li>
       </ol>
@@ -164,42 +193,171 @@
       </div>
     </section>
 
-    <div class="profile">
-      <div class="profile-head">
-        <div>
-          <div class="name">InReach NC</div>
-          <span class="tag">Intellectual &amp; developmental disabilities · Charlotte, NC</span>
-        </div>
-        <div class="verified">✓ Vetted for efficiency</div>
-      </div>
-      <div class="profile-body">
-        <p class="desc">InReach provides housing, employment, and community support for children and adults with intellectual and developmental disabilities in the greater Charlotte region.</p>
-        <div class="eff">
-          <div class="box"><div class="n">87%</div><div class="l">to programs</div></div>
-          <div class="box"><div class="n">~1,200</div><div class="l">people served / yr</div></div>
-          <div class="box"><div class="n">Charlotte, NC</div><div class="l">where they work</div></div>
-        </div>
+    <section class="carousel" id="profiles" aria-roledescription="carousel" aria-label="Vetted charity profiles">
+      <div class="car-stage">
+        <button type="button" class="car-arrow prev" aria-label="Previous charity">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 5 8 12 15 19"/></svg>
+        </button>
+        <div class="car-viewport">
+          <div class="car-track">
+          <div class="car-slide" id="inreach" role="group" aria-roledescription="slide" aria-label="1 of 4: InReach NC">
+            <div class="profile">
+              <div class="profile-head">
+                <div>
+                  <div class="name">InReach NC</div>
+                  <span class="tag">Intellectual &amp; developmental disabilities · Charlotte, NC</span>
+                </div>
+                <div class="verified">✓ Vetted for efficiency</div>
+              </div>
+              <div class="profile-body">
+                <p class="desc">InReach provides housing, employment, and community support for children and adults with intellectual and developmental disabilities in the greater Charlotte region.</p>
+                <div class="eff">
+                  <div class="box"><div class="n">87%</div><div class="l">to programs</div></div>
+                  <div class="box"><div class="n">~1,200</div><div class="l">people served / yr</div></div>
+                  <div class="box"><div class="n">Charlotte, NC</div><div class="l">where they work</div></div>
+                </div>
 
-        <div class="give">
-          <h3>Ways to give</h3>
-          <div class="sub">Every option sends your gift directly to InReach NC. joy.us takes nothing.</div>
-          <div class="give-grid">
-            <a class="give-btn primary" href="https://www.every.org/" target="_blank" rel="noopener">
-              <span class="g-name">Give via Every.org</span><span class="g-note">0% platform fees</span>
-            </a>
-            <a class="give-btn" href="https://www.daffy.org/" target="_blank" rel="noopener">
-              <span class="g-name">Give via Daffy</span><span class="g-note">donor-advised fund</span>
-            </a>
-            <a class="give-btn" href="https://inreachnc.org/ways-to-give" target="_blank" rel="noopener">
-              <span class="g-name">Give on their site</span><span class="g-note">directly to the charity</span>
-            </a>
-            <a class="give-btn" href="https://www.charitynavigator.org/" target="_blank" rel="noopener">
-              <span class="g-name">Research first</span><span class="g-note">Charity Navigator</span>
-            </a>
+                <div class="give">
+                  <h3>Ways to give</h3>
+                  <div class="sub">Every option sends your gift directly to InReach NC. joy.us takes nothing.</div>
+                  <div class="give-grid">
+                    <a class="give-btn primary" href="https://www.every.org/" target="_blank" rel="noopener">
+                      <span class="g-name">Give via Every.org</span><span class="g-note">0% platform fees</span>
+                    </a>
+                    <a class="give-btn" href="https://www.daffy.org/" target="_blank" rel="noopener">
+                      <span class="g-name">Give via Daffy</span><span class="g-note">donor-advised fund</span>
+                    </a>
+                    <a class="give-btn" href="https://inreachnc.org/ways-to-give" target="_blank" rel="noopener">
+                      <span class="g-name">Give on their site</span><span class="g-note">directly to the charity</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="car-slide" id="nevins" role="group" aria-roledescription="slide" aria-label="2 of 4: Nevins Inc">
+            <div class="profile">
+              <div class="profile-head">
+                <div>
+                  <div class="name">Nevins Inc</div>
+                  <span class="tag">Intellectual &amp; developmental disabilities · Charlotte, NC</span>
+                </div>
+                <div class="verified">✓ Vetted for efficiency</div>
+              </div>
+              <div class="profile-body">
+                <p class="desc">Nevins provides vocational training, employment, and community support to adults with intellectual and developmental disabilities in Mecklenburg County, so they can reach their fullest potential.</p>
+                <div class="eff">
+                  <div class="box"><div class="n">80%</div><div class="l">to programs</div></div>
+                  <div class="box"><div class="n">1959</div><div class="l">founded</div></div>
+                  <div class="box"><div class="n">Charlotte</div><div class="l">where they work</div></div>
+                </div>
+
+                <div class="give">
+                  <h3>Ways to give</h3>
+                  <div class="sub">Every option sends your gift directly to Nevins Inc. joy.us takes nothing.</div>
+                  <div class="give-grid">
+                    <a class="give-btn primary" href="https://www.every.org/" target="_blank" rel="noopener">
+                      <span class="g-name">Give via Every.org</span><span class="g-note">0% platform fees</span>
+                    </a>
+                    <a class="give-btn" href="https://www.daffy.org/" target="_blank" rel="noopener">
+                      <span class="g-name">Give via Daffy</span><span class="g-note">donor-advised fund</span>
+                    </a>
+                    <a class="give-btn" href="https://nevinsinc.org" target="_blank" rel="noopener">
+                      <span class="g-name">Give on their site</span><span class="g-note">directly to the charity</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="car-slide" id="the-arc" role="group" aria-roledescription="slide" aria-label="3 of 4: The Arc of the United States">
+            <div class="profile">
+              <div class="profile-head">
+                <div>
+                  <div class="name">The Arc of the United States</div>
+                  <span class="tag">Intellectual &amp; developmental disabilities · Nationwide</span>
+                </div>
+                <div class="verified">✓ Vetted for efficiency</div>
+              </div>
+              <div class="profile-body">
+                <p class="desc">The Arc advocates for and serves people with intellectual and developmental disabilities and their families, through a national office and a network of state and local chapters.</p>
+                <div class="eff">
+                  <div class="box"><div class="n">91%</div><div class="l">to programs</div></div>
+                  <div class="box"><div class="n">1950</div><div class="l">founded</div></div>
+                  <div class="box"><div class="n">USA</div><div class="l">where they work</div></div>
+                </div>
+
+                <div class="give">
+                  <h3>Ways to give</h3>
+                  <div class="sub">Every option sends your gift directly to The Arc of the United States. joy.us takes nothing.</div>
+                  <div class="give-grid">
+                    <a class="give-btn primary" href="https://www.every.org/" target="_blank" rel="noopener">
+                      <span class="g-name">Give via Every.org</span><span class="g-note">0% platform fees</span>
+                    </a>
+                    <a class="give-btn" href="https://www.daffy.org/" target="_blank" rel="noopener">
+                      <span class="g-name">Give via Daffy</span><span class="g-note">donor-advised fund</span>
+                    </a>
+                    <a class="give-btn" href="https://thearc.org" target="_blank" rel="noopener">
+                      <span class="g-name">Give on their site</span><span class="g-note">directly to the charity</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="car-slide" id="special-olympics" role="group" aria-roledescription="slide" aria-label="4 of 4: Special Olympics">
+            <div class="profile">
+              <div class="profile-head">
+                <div>
+                  <div class="name">Special Olympics</div>
+                  <span class="tag">Intellectual disabilities · Worldwide</span>
+                </div>
+                <div class="verified">✓ Vetted for efficiency</div>
+              </div>
+              <div class="profile-body">
+                <p class="desc">Special Olympics provides year-round sports training and competition for children and adults with intellectual disabilities, building health, confidence, and inclusion.</p>
+                <div class="eff">
+                  <div class="box"><div class="n">86%</div><div class="l">to programs</div></div>
+                  <div class="box"><div class="n">1968</div><div class="l">founded</div></div>
+                  <div class="box"><div class="n">Global</div><div class="l">where they work</div></div>
+                </div>
+
+                <div class="give">
+                  <h3>Ways to give</h3>
+                  <div class="sub">Every option sends your gift directly to Special Olympics. joy.us takes nothing.</div>
+                  <div class="give-grid">
+                    <a class="give-btn primary" href="https://www.every.org/" target="_blank" rel="noopener">
+                      <span class="g-name">Give via Every.org</span><span class="g-note">0% platform fees</span>
+                    </a>
+                    <a class="give-btn" href="https://www.daffy.org/" target="_blank" rel="noopener">
+                      <span class="g-name">Give via Daffy</span><span class="g-note">donor-advised fund</span>
+                    </a>
+                    <a class="give-btn" href="https://www.specialolympics.org" target="_blank" rel="noopener">
+                      <span class="g-name">Give on their site</span><span class="g-note">directly to the charity</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           </div>
         </div>
+        <button type="button" class="car-arrow next" aria-label="Next charity">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 5 16 12 9 19"/></svg>
+        </button>
+        <div class="car-nav">
+          <div class="car-dots">
+              <button type="button" class="car-dot" aria-label="Show InReach NC"></button>
+              <button type="button" class="car-dot" aria-label="Show Nevins Inc"></button>
+              <button type="button" class="car-dot" aria-label="Show The Arc of the United States"></button>
+              <button type="button" class="car-dot" aria-label="Show Special Olympics"></button>
+          </div>
+          <div class="car-count" aria-live="polite">1 of 4</div>
+        </div>
       </div>
-    </div>
+    </section>
+
+    <p class="more-note">More vetted charities coming.</p>
 
     <section class="results" id="results">
       <div class="kicker">Results Verified</div>
@@ -248,15 +406,6 @@
         </a>
       </div>
     </section>
-
-    <div class="more">
-      <h2>More vetted charities coming</h2>
-      <div class="cards">
-        <div class="card"><div class="name">Your next pick</div><div class="soon">Coming soon</div></div>
-        <div class="card"><div class="name">Your next pick</div><div class="soon">Coming soon</div></div>
-        <div class="card"><div class="name">Your next pick</div><div class="soon">Coming soon</div></div>
-      </div>
-    </div>
   </div>
 
   <footer>
@@ -292,6 +441,76 @@
   function onScroll(){window.scrollY>hero.offsetHeight-90?hdr.classList.add('scrolled'):hdr.classList.remove('scrolled');}
   window.addEventListener('scroll',onScroll,{passive:true});onScroll();
   document.getElementById('yr').textContent=new Date().getFullYear();
+
+  /* profile carousel */
+  (function(){
+    var car=document.getElementById('profiles');
+    if(!car)return;
+    var viewport=car.querySelector('.car-viewport'),track=car.querySelector('.car-track');
+    var slides=[].slice.call(car.querySelectorAll('.car-slide'));
+    var dots=[].slice.call(car.querySelectorAll('.car-dot'));
+    var count=car.querySelector('.car-count');
+    var n=slides.length,cur=0;
+
+    function go(i,updateHash){
+      cur=(i%n+n)%n;
+      track.style.transform='translateX('+(-100*cur)+'%)';
+      viewport.scrollLeft=0;
+      slides.forEach(function(s,k){
+        var on=k===cur;
+        s.setAttribute('aria-hidden',on?'false':'true');
+        if(on)s.removeAttribute('inert');else s.setAttribute('inert','');
+      });
+      dots.forEach(function(d,k){d.setAttribute('aria-current',k===cur?'true':'false');});
+      count.textContent=(cur+1)+' of '+n;
+      if(updateHash&&history.replaceState)history.replaceState(null,'','#'+slides[cur].id);
+    }
+    function fromHash(){
+      var id=decodeURIComponent(location.hash.slice(1));
+      for(var k=0;k<n;k++)if(slides[k].id===id){go(k,false);reveal();return true;}
+      return false;
+    }
+    function reveal(){
+      var top=car.getBoundingClientRect().top+window.scrollY-90;
+      window.scrollTo({top:Math.max(0,top),behavior:'instant'});
+    }
+
+    car.querySelector('.car-arrow.prev').addEventListener('click',function(){go(cur-1,true);});
+    car.querySelector('.car-arrow.next').addEventListener('click',function(){go(cur+1,true);});
+    dots.forEach(function(d,k){d.addEventListener('click',function(){go(k,true);});});
+
+    // keyboard: arrow keys while the carousel is on screen (not while typing)
+    document.addEventListener('keydown',function(e){
+      if(e.key!=='ArrowLeft'&&e.key!=='ArrowRight')return;
+      if(e.altKey||e.ctrlKey||e.metaKey||e.shiftKey)return;
+      var t=e.target;
+      if(t&&(t.isContentEditable||/^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)))return;
+      var r=car.getBoundingClientRect();
+      if(!car.contains(t)&&(r.bottom<0||r.top>window.innerHeight))return;
+      e.preventDefault();
+      go(cur+(e.key==='ArrowRight'?1:-1),true);
+    });
+
+    // touch swipe
+    var x0=null,y0=null;
+    viewport.addEventListener('touchstart',function(e){if(e.touches.length===1){x0=e.touches[0].clientX;y0=e.touches[0].clientY;}},{passive:true});
+    viewport.addEventListener('touchend',function(e){
+      if(x0===null)return;
+      var dx=e.changedTouches[0].clientX-x0,dy=e.changedTouches[0].clientY-y0;
+      x0=y0=null;
+      if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.5)go(cur+(dx<0?1:-1),true);
+    },{passive:true});
+    // keep the clipped viewport from being scrolled sideways by anchor jumps or focus
+    viewport.addEventListener('scroll',function(){viewport.scrollLeft=0;});
+
+    car.classList.add('ready');
+    window.addEventListener('hashchange',fromHash);
+    if(fromHash()){
+      // re-align once fonts and layout have settled
+      window.addEventListener('load',function(){if(slides[cur].id===location.hash.slice(1))reveal();});
+      if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){if(slides[cur].id===location.hash.slice(1))reveal();});
+    }else go(0,false);
+  })();
 </script>
 </body>
 </html>
