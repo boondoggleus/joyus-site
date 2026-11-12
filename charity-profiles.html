@@ -64,6 +64,26 @@
   .give-btn.primary .g-note{color:#dbe4ff;}
 
   /* upcoming grid */
+  /* ===== standards + results ===== */
+  .standards,.results{margin-bottom:56px;scroll-margin-top:90px;}
+  .standards h2,.results h2{font-size:clamp(22px,2.6vw,30px);font-weight:700;margin-bottom:16px;}
+  .checks{padding-left:1.3em;max-width:760px;}
+  .checks li{font-size:clamp(16px,1.4vw,18px);line-height:1.65;color:#33445c;margin-bottom:12px;padding-left:4px;}
+  .checks li::marker{color:var(--gold);font-weight:700;}
+  .checks strong{color:var(--navy);font-weight:600;}
+  .std-note{font-size:16px;line-height:1.7;color:#5a6b82;max-width:760px;margin-top:6px;}
+  .rv-box{margin-top:26px;background:#e1f5ee;border-radius:18px;padding:26px clamp(22px,3vw,32px);max-width:760px;}
+  .rv-mark{font-size:15px;font-weight:700;color:#12795a;margin-bottom:8px;}
+  .rv-box p{font-size:16px;line-height:1.7;color:#24423a;}
+  .rv-link{display:inline-block;margin-top:14px;color:#12795a;font-weight:600;font-size:15px;text-decoration:none;border-bottom:1px solid rgba(18,121,90,.4);}
+  .rv-link:hover{border-bottom-color:#12795a;}
+  .r-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:24px;}
+  .r-card{display:flex;flex-direction:column;gap:8px;border:1px solid #e6eaf1;border-radius:16px;padding:22px;text-decoration:none;color:var(--navy);background:#fff;transition:border-color .2s,transform .15s,box-shadow .2s;}
+  .r-card:hover{border-color:var(--blue);transform:translateY(-2px);box-shadow:0 12px 28px rgba(22,38,63,.08);}
+  .r-name{font-weight:700;font-size:18px;}
+  .r-desc{font-size:15px;line-height:1.55;color:#4a5972;flex:1;}
+  .r-status{align-self:flex-start;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);}
+
   .more h2{font-size:22px;font-weight:700;margin-bottom:18px;}
   .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;}
   .card{border:1px dashed #d3dae6;border-radius:16px;padding:24px;background:#fbfcfe;}
@@ -126,6 +146,24 @@
       <p>Before a charity appears here, we look at how efficiently it turns donations into outcomes — program spending, transparency, and results. When it earns a place, we give you clear, direct ways to support it. joy.us never handles the money; you give straight to the charity or through a fund you trust.</p>
     </div>
 
+    <section class="standards" id="standards">
+      <div class="kicker">Our standards</div>
+      <h2>The five checks every charity passes</h2>
+      <ol class="checks">
+        <li><strong>Registered and in good standing.</strong> A 501(c)(3) whose status we confirm against its IRS filings.</li>
+        <li><strong>At least 75 cents of every dollar goes to programs.</strong> Taken from its most recent Form 990.</li>
+        <li><strong>Independently rated.</strong> Four stars from Charity Navigator. Where Charity Navigator hasn’t scored it, it must hold a Candid Gold or Platinum seal plus ECFA or BBB accreditation, and we review its three most recent Form 990 filings and name the years and figures checked on its profile.</li>
+        <li><strong>No fraud or governance scandal.</strong> We search the news for investigations, misuse of funds, and governance failures.</li>
+        <li><strong>It serves the people we exist for.</strong> Its programs, not just its mission statement, serve those born with lifelong developmental or physical conditions, children born into crisis or without family, and the caregivers who carry that weight.</li>
+      </ol>
+      <p class="std-note">Every profile is rechecked each year. A charity that slips below the bar is suspended until it passes again.</p>
+      <div class="rv-box">
+        <div class="rv-mark">✓ Results Verified</div>
+        <p>Some charities go a step further: they show donors what a specific gift or project did, with photos, a completion report, or an update from the person helped. Those earn our Results Verified mark. Admitted means trustworthy. Results Verified means you’ll see where your money went.</p>
+        <a class="rv-link" href="#results">See the charities that show results →</a>
+      </div>
+    </section>
+
     <div class="profile">
       <div class="profile-head">
         <div>
@@ -163,6 +201,54 @@
         </div>
       </div>
     </div>
+
+    <section class="results" id="results">
+      <div class="kicker">Results Verified</div>
+      <h2>Charities that show results</h2>
+      <p class="std-note">These organizations report back at the gift or project level, so a donor can see what their money did. Each is under review against our five checks and is not yet an admitted joy.us charity. Links go to their own sites.</p>
+      <div class="r-grid">
+        <a class="r-card" href="https://www.charitywater.org" target="_blank" rel="noopener">
+          <span class="r-name">charity: water</span>
+          <span class="r-desc">Every water project is GPS-tagged, with photos and a completion report sent to the donor.</span>
+          <span class="r-status">Under review</span>
+        </a>
+        <a class="r-card" href="https://www.donorschoose.org" target="_blank" rel="noopener">
+          <span class="r-name">DonorsChoose</span>
+          <span class="r-desc">Fund a classroom project and get photos and thank-you notes when the supplies arrive.</span>
+          <span class="r-status">Under review</span>
+        </a>
+        <a class="r-card" href="https://www.givedirectly.org" target="_blank" rel="noopener">
+          <span class="r-name">GiveDirectly</span>
+          <span class="r-desc">Cash sent straight to families, with updates posted by the recipients themselves.</span>
+          <span class="r-status">Under review</span>
+        </a>
+        <a class="r-card" href="https://watsi.org" target="_blank" rel="noopener">
+          <span class="r-name">Watsi</span>
+          <span class="r-desc">One patient, one treatment, and an update when it’s done.</span>
+          <span class="r-status">Under review</span>
+        </a>
+        <a class="r-card" href="https://www.kiva.org" target="_blank" rel="noopener">
+          <span class="r-name">Kiva</span>
+          <span class="r-desc">Loan-by-loan tracking, from funding through repayment.</span>
+          <span class="r-status">Under review</span>
+        </a>
+        <a class="r-card" href="https://www.globalgiving.org" target="_blank" rel="noopener">
+          <span class="r-name">GlobalGiving</span>
+          <span class="r-desc">Projects must post progress reports to stay listed.</span>
+          <span class="r-status">Under review</span>
+        </a>
+        <a class="r-card" href="https://www.smiletrain.org" target="_blank" rel="noopener">
+          <span class="r-name">Smile Train</span>
+          <span class="r-desc">Reporting on each cleft surgery funded.</span>
+          <span class="r-status">Under review</span>
+        </a>
+        <a class="r-card" href="https://mite.org" target="_blank" rel="noopener">
+          <span class="r-name">Mite</span>
+          <span class="r-desc">Per-project updates and completion videos, from a Charlotte-area nonprofit.</span>
+          <span class="r-status">Under review</span>
+        </a>
+      </div>
+    </section>
 
     <div class="more">
       <h2>More vetted charities coming</h2>

@@ -56,6 +56,10 @@
   .block p + p{margin-top:14px;}
   .block a.inline{color:var(--blue);text-decoration:none;font-weight:600;border-bottom:1px solid rgba(47,93,255,.35);}
   .block a.inline:hover{border-bottom-color:var(--blue);}
+  .checks{margin:6px 0 20px 0;padding-left:1.3em;max-width:720px;}
+  .checks li{font-size:clamp(16px,1.5vw,19px);line-height:1.65;color:#33445c;margin-bottom:10px;padding-left:4px;}
+  .checks li::marker{color:var(--gold);font-weight:700;}
+  .checks strong, .block p strong{color:var(--navy);font-weight:600;}
 
   .stat-row{display:flex;flex-wrap:wrap;gap:18px;margin-top:26px;}
   .stat{flex:1;min-width:180px;background:var(--mist);border-radius:16px;padding:24px 26px;}
@@ -126,7 +130,7 @@
     <div class="block">
       <div class="kicker">What we do</div>
       <h2>We curate charities that are efficient</h2>
-      <p>joy.us is a mission-driven nonprofit that finds and spotlights charities which use every dollar well — efficient, effective organizations where your giving does the most good. We don't accept or process donations. You give directly to the charity, so joy.us is never in the middle and never takes a cent.</p>
+      <p>joy.us is a mission-driven project that finds and spotlights charities which use every dollar well — efficient, effective organizations where your giving does the most good. We don't accept or process donations. You give directly to the charity, so joy.us is never in the middle and never takes a cent.</p>
       <div class="stat-row">
         <div class="stat"><div class="n">Efficient</div><div class="l">charities only, vetted for impact</div></div>
         <div class="stat"><div class="n">Direct</div><div class="l">you give the charity, not us</div></div>
@@ -141,10 +145,24 @@
     </div>
 
     <div class="block">
+      <div class="kicker">Our standards</div>
+      <h2>Every charity passes the same five checks</h2>
+      <ol class="checks">
+        <li><strong>Registered and in good standing.</strong> A 501(c)(3) whose status we confirm against IRS filings.</li>
+        <li><strong>At least 75 cents of every dollar goes to programs.</strong> Taken from its most recent Form 990.</li>
+        <li><strong>Independently rated.</strong> Four stars from Charity Navigator. Where Charity Navigator hasn’t scored it, a Candid Gold or Platinum seal plus ECFA or BBB accreditation, and a review of its three most recent Form 990 filings.</li>
+        <li><strong>No fraud or governance scandal</strong> in the news.</li>
+        <li><strong>It serves the people we exist for:</strong> those born with lifelong developmental or physical conditions, children born into crisis or without family, and the caregivers who carry that weight.</li>
+      </ol>
+      <p>Some charities also earn our <strong>Results Verified</strong> mark: they show donors what each gift or project did. Admitted means trustworthy. Results Verified means you’ll see where your money went.</p>
+      <p><a class="inline" href="charity-profiles.html#standards">Read the full standards</a> &nbsp;·&nbsp; <a class="inline" href="charity-profiles.html#results">See the charities that show results</a></p>
+    </div>
+
+    <div class="block">
       <div class="kicker">Why we exist</div>
       <h2>Reflection, turned into action</h2>
       <p>joy.us grew out of a long, documented search — a cross-faith study of what it means to live well and do good by one another. Over time that search settled into a simple conviction: reflection is only worth so much until it becomes action. joy.us is that conviction built outward into the world.</p>
-      <p>The search itself continues, openly, at <a class="inline" href="https://chasingrabbits.now">chasingrabbits.now</a>. joy.us is where it turns into giving.</p>
+      <p>The search itself continues, openly, at <a class="inline" href="https://muse.blog">muse.blog</a>. joy.us is where it turns into giving.</p>
     </div>
 
     <div class="block cta-band">
