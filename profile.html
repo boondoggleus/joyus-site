@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vetted Charity Profiles — joy.us</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+  :root{--navy:#16263F;--blue:#2F5DFF;--blue-deep:#23408e;--gold:#E2A23E;--mist:#f5f7fb;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Poppins',system-ui,Arial,sans-serif;color:var(--navy);background:#fff;}
+
+  .site-header{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:20px clamp(20px,5vw,64px);transition:background .25s,box-shadow .25s,padding .25s;}
+  .site-header.scrolled{background:#fff;box-shadow:0 6px 24px rgba(22,38,63,.08);padding:12px clamp(20px,5vw,64px);}
+  .logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+  .logo svg{width:30px;height:30px;}
+  .logo span{font-size:24px;font-weight:700;color:#fff;transition:color .25s;}
+  .site-header.scrolled .logo span{color:var(--navy);}
+  nav{display:flex;align-items:center;gap:clamp(16px,2.4vw,40px);}
+  nav a{color:#fff;text-decoration:none;font-size:16px;font-weight:500;opacity:.94;transition:color .25s;}
+  nav a:hover{opacity:1;text-decoration:underline;text-underline-offset:5px;}
+  nav a.active{text-decoration:underline;text-underline-offset:5px;}
+  .site-header.scrolled nav a{color:var(--navy);}
+  .nav-toggle{display:none;background:none;border:0;cursor:pointer;}
+  .nav-toggle span{display:block;width:26px;height:2px;background:#fff;margin:5px 0;border-radius:2px;}
+  .site-header.scrolled .nav-toggle span{background:var(--navy);}
+
+  .page-hero{position:relative;min-height:46vh;display:flex;align-items:flex-end;padding:0 clamp(20px,5vw,64px) clamp(34px,5vh,54px);color:#fff;overflow:hidden;background:linear-gradient(135deg,#1c3a52,#16263F 60%,#0b1626);}
+  .page-hero h1{position:relative;z-index:2;font-size:clamp(30px,5vw,52px);font-weight:700;line-height:1.1;}
+  .page-hero p{position:relative;z-index:2;margin-top:14px;max-width:640px;font-size:clamp(16px,1.6vw,20px);color:#eef2ff;}
+
+  .wrap{max-width:1040px;margin:0 auto;padding:clamp(48px,7vh,84px) clamp(20px,5vw,32px);}
+  .lead{max-width:720px;margin-bottom:48px;}
+  .kicker{font-size:14px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+  .lead h2{font-size:clamp(22px,2.6vw,30px);font-weight:700;margin-bottom:12px;}
+  .lead p{font-size:clamp(16px,1.4vw,18px);line-height:1.7;color:#33445c;}
+
+  /* featured profile card */
+  .profile{border:1px solid #e6eaf1;border-radius:20px;overflow:hidden;box-shadow:0 18px 40px rgba(22,38,63,.06);margin-bottom:40px;}
+  .profile-head{padding:30px clamp(24px,4vw,40px);border-bottom:1px solid #eef1f6;display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between;}
+  .profile-head .name{font-size:clamp(22px,2.4vw,28px);font-weight:700;}
+  .tag{display:inline-block;background:#eaf0ff;color:var(--blue-deep);font-size:13px;font-weight:600;padding:6px 14px;border-radius:20px;margin-top:8px;}
+  .verified{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:#1d9e75;background:#e1f5ee;padding:8px 14px;border-radius:20px;}
+  .profile-body{padding:clamp(24px,4vw,40px);}
+  .profile-body p.desc{font-size:17px;line-height:1.7;color:#33445c;max-width:720px;}
+  .eff{display:flex;flex-wrap:wrap;gap:16px;margin:26px 0 4px;}
+  .eff .box{flex:1;min-width:160px;background:var(--mist);border-radius:14px;padding:18px 20px;}
+  .eff .box .n{font-size:24px;font-weight:800;}
+  .eff .box .l{font-size:14px;color:#5a6b82;margin-top:2px;}
+  .draft{font-size:13px;color:#9aa6b8;font-style:italic;margin-top:10px;}
+
+  /* ways to give */
+  .give{background:var(--mist);border-radius:16px;padding:26px clamp(20px,3vw,30px);margin-top:30px;}
+  .give h3{font-size:19px;font-weight:700;margin-bottom:4px;}
+  .give .sub{font-size:14px;color:#5a6b82;margin-bottom:18px;}
+  .give-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;}
+  .give-btn{display:flex;flex-direction:column;gap:2px;background:#fff;border:1px solid #e2e7f0;border-radius:12px;padding:16px 18px;text-decoration:none;transition:border-color .2s,transform .12s,box-shadow .2s;}
+  .give-btn:hover{border-color:var(--blue);transform:translateY(-2px);box-shadow:0 10px 22px rgba(22,38,63,.08);}
+  .give-btn .g-name{font-weight:700;color:var(--navy);font-size:16px;}
+  .give-btn .g-note{font-size:13px;color:#5a6b82;}
+  .give-btn.primary{background:var(--blue);border-color:var(--blue);}
+  .give-btn.primary .g-name{color:#fff;}
+  .give-btn.primary .g-note{color:#dbe4ff;}
+
+  /* profile carousel */
+  .carousel{--bleed:24px;margin-bottom:56px;scroll-margin-top:90px;}
+  .car-stage{display:grid;grid-template-columns:auto minmax(0,1fr) auto;grid-template-areas:"prev view next" ". nav .";column-gap:14px;row-gap:6px;align-items:center;}
+  .car-viewport{grid-area:view;overflow:hidden;overflow:clip;margin:-20px calc(-1 * var(--bleed)) 0;}
+  .car-track{display:block;}
+  .car-slide{padding:20px var(--bleed) 44px;scroll-margin-top:90px;}
+  .car-slide .profile{margin-bottom:0;height:100%;}
+  .carousel.ready .car-track{display:flex;align-items:stretch;transition:transform .45s ease;}
+  .carousel.ready .car-slide{flex:0 0 100%;min-width:0;}
+  .car-arrow,.car-nav{display:none;}
+  .carousel.ready .car-arrow{display:flex;}
+  .carousel.ready .car-nav{display:flex;}
+  .car-arrow{position:relative;z-index:2;align-items:center;justify-content:center;width:48px;height:48px;border-radius:50%;border:1px solid #e2e7f0;background:#fff;color:var(--navy);cursor:pointer;box-shadow:0 6px 16px rgba(22,38,63,.08);transition:border-color .2s,color .2s,transform .12s;}
+  .car-arrow:hover{border-color:var(--blue);color:var(--blue);}
+  .car-arrow:active{transform:scale(.96);}
+  .car-arrow:focus-visible,.car-dot:focus-visible{outline:3px solid var(--gold);outline-offset:3px;}
+  .car-arrow svg{width:22px;height:22px;}
+  .car-arrow.prev{grid-area:prev;}
+  .car-arrow.next{grid-area:next;}
+  .car-nav{grid-area:nav;flex-direction:column;align-items:center;gap:8px;}
+  .car-dots{display:flex;gap:4px;}
+  .car-dot{width:28px;height:28px;border:0;background:none;cursor:pointer;display:flex;align-items:center;justify-content:center;border-radius:50%;}
+  .car-dot::before{content:"";width:10px;height:10px;border-radius:50%;background:#d3dae6;transition:background .2s,transform .2s;}
+  .car-dot:hover::before{background:#9aa6b8;}
+  .car-dot[aria-current="true"]::before{background:var(--blue);transform:scale(1.2);}
+  .car-count{font-size:14px;font-weight:600;color:#5a6b82;}
+  .back-link{display:inline-block;margin-bottom:22px;color:var(--blue);font-weight:600;font-size:15px;text-decoration:none;border-bottom:1px solid rgba(47,93,255,.35);}
+  .back-link:hover{border-bottom-color:var(--blue);}
+  @media(max-width:860px){
+    .carousel{--bleed:12px;}
+    .car-stage{grid-template-areas:"view view view" "prev nav next";}
+    .give-grid{grid-template-columns:1fr;}
+  }
+  @media(prefers-reduced-motion:reduce){.carousel.ready .car-track{transition:none;}}
+  footer{background:#0e1b2e;color:#aebbd0;padding:44px clamp(20px,5vw,64px);margin-top:20px;}
+  .foot-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px;align-items:center;}
+  .foot-top .logo span{color:#fff;}
+  footer nav a{color:#aebbd0;font-size:15px;}
+  footer nav a:hover{color:#fff;}
+  .foot-note{margin-top:24px;padding-top:18px;border-top:1px solid rgba(255,255,255,.08);font-size:13px;color:#7d8ba3;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;}
+  .foot-note .pledge{color:var(--gold);}
+
+  @media(max-width:760px){
+    nav{position:absolute;top:64px;right:16px;left:16px;flex-direction:column;align-items:flex-start;gap:16px;background:rgba(11,22,40,.96);backdrop-filter:blur(6px);padding:20px 22px;border-radius:16px;display:none;}
+    nav.open{display:flex;}
+    nav a,.site-header.scrolled nav a{color:#fff;}
+    .nav-toggle{display:block;z-index:60;}
+    footer nav{position:static;flex-direction:row;flex-wrap:wrap;background:none;padding:0;}
+  }
+</style>
+</head>
+<body>
+
+  <header class="site-header" id="hdr">
+    <a class="logo" href="index.html">
+      <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <g fill="none" stroke="#E2A23E" stroke-width="2.6" stroke-linecap="round">
+          <line x1="24" y1="4" x2="24" y2="11"/><line x1="24" y1="37" x2="24" y2="44"/>
+          <line x1="4" y1="24" x2="11" y2="24"/><line x1="37" y1="24" x2="44" y2="24"/>
+          <line x1="10" y1="10" x2="15" y2="15"/><line x1="33" y1="33" x2="38" y2="38"/>
+          <line x1="38" y1="10" x2="33" y2="15"/><line x1="15" y1="33" x2="10" y2="38"/>
+        </g>
+        <circle cx="24" cy="24" r="8.5" fill="#E2A23E"/>
+      </svg>
+      <span>joy.us</span>
+    </a>
+    <button class="nav-toggle" aria-label="Menu" onclick="document.getElementById('nav').classList.toggle('open')"><span></span><span></span><span></span></button>
+    <nav id="nav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="charity-profiles.html" class="active">Charity Profiles</a>
+      <a href="goodness-lists.html">Goodness Lists</a>
+      <a href="archive.html">Inspiration Bank</a>
+    </nav>
+  </header>
+
+  <section class="page-hero" id="pageHero">
+    <div>
+      <h1>Vetted charity profiles</h1>
+      <p>A closer look at each charity we’ve vetted — and a few good ways to give to them directly.</p>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <a class="back-link" href="charity-profiles.html">← All charities</a>
+
+    <section class="carousel" id="profiles" aria-roledescription="carousel" aria-label="Vetted charity profiles">
+      <div class="car-stage">
+        <button type="button" class="car-arrow prev" aria-label="Previous charity">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 5 8 12 15 19"/></svg>
+        </button>
+        <div class="car-viewport">
+          <div class="car-track">
+          <div class="car-slide" id="inreach" role="group" aria-roledescription="slide" aria-label="1 of 4: InReach NC">
+            <div class="profile">
+              <div class="profile-head">
+                <div>
+                  <div class="name">InReach NC</div>
+                  <span class="tag">Intellectual &amp; developmental disabilities · Charlotte, NC</span>
+                </div>
+                <div class="verified">✓ Vetted for efficiency</div>
+              </div>
+              <div class="profile-body">
+                <p class="desc">InReach provides housing, employment, and community support for children and adults with intellectual and developmental disabilities in the greater Charlotte region.</p>
+                <div class="eff">
+                  <div class="box"><div class="n">87%</div><div class="l">to programs</div></div>
+                  <div class="box"><div class="n">~1,200</div><div class="l">people served / yr</div></div>
+                  <div class="box"><div class="n">Charlotte, NC</div><div class="l">where they work</div></div>
+                </div>
+
+                <div class="give">
+                  <h3>Ways to give</h3>
+                  <div class="sub">Every option sends your gift directly to InReach NC. joy.us takes nothing.</div>
+                  <div class="give-grid">
+                    <a class="give-btn primary" href="https://www.every.org/" target="_blank" rel="noopener">
+                      <span class="g-name">Give via Every.org</span><span class="g-note">0% platform fees</span>
+                    </a>
+                    <a class="give-btn" href="https://www.daffy.org/" target="_blank" rel="noopener">
+                      <span class="g-name">Give via Daffy</span><span class="g-note">donor-advised fund</span>
+                    </a>
+                    <a class="give-btn" href="https://inreachnc.org/ways-to-give" target="_blank" rel="noopener">
+                      <span class="g-name">Give on their site</span><span class="g-note">directly to the charity</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="car-slide" id="nevins" role="group" aria-roledescription="slide" aria-label="2 of 4: Nevins Inc">
+            <div class="profile">
+              <div class="profile-head">
+                <div>
+                  <div class="name">Nevins Inc</div>
+                  <span class="tag">Intellectual &amp; developmental disabilities · Charlotte, NC</span>
+                </div>
+                <div class="verified">✓ Vetted for efficiency</div>
+              </div>
+              <div class="profile-body">
+                <p class="desc">Nevins provides vocational training, employment, and community support to adults with intellectual and developmental disabilities in Mecklenburg County, so they can reach their fullest potential.</p>
+                <div class="eff">
+                  <div class="box"><div class="n">80%</div><div class="l">to programs</div></div>
+                  <div class="box"><div class="n">1959</div><div class="l">founded</div></div>
+                  <div class="box"><div class="n">Charlotte</div><div class="l">where they work</div></div>
+                </div>
+
+                <div class="give">
+                  <h3>Ways to give</h3>
+                  <div class="sub">Every option sends your gift directly to Nevins Inc. joy.us takes nothing.</div>
+                  <div class="give-grid">
+                    <a class="give-btn primary" href="https://www.every.org/" target="_blank" rel="noopener">
+                      <span class="g-name">Give via Every.org</span><span class="g-note">0% platform fees</span>
+                    </a>
+                    <a class="give-btn" href="https://www.daffy.org/" target="_blank" rel="noopener">
+                      <span class="g-name">Give via Daffy</span><span class="g-note">donor-advised fund</span>
+                    </a>
+                    <a class="give-btn" href="https://nevinsinc.org" target="_blank" rel="noopener">
+                      <span class="g-name">Give on their site</span><span class="g-note">directly to the charity</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="car-slide" id="the-arc" role="group" aria-roledescription="slide" aria-label="3 of 4: The Arc of the United States">
+            <div class="profile">
+              <div class="profile-head">
+                <div>
+                  <div class="name">The Arc of the United States</div>
+                  <span class="tag">Intellectual &amp; developmental disabilities · Nationwide</span>
+                </div>
+                <div class="verified">✓ Vetted for efficiency</div>
+              </div>
+              <div class="profile-body">
+                <p class="desc">The Arc advocates for and serves people with intellectual and developmental disabilities and their families, through a national office and a network of state and local chapters.</p>
+                <div class="eff">
+                  <div class="box"><div class="n">91%</div><div class="l">to programs</div></div>
+                  <div class="box"><div class="n">1950</div><div class="l">founded</div></div>
+                  <div class="box"><div class="n">USA</div><div class="l">where they work</div></div>
+                </div>
+
+                <div class="give">
+                  <h3>Ways to give</h3>
+                  <div class="sub">Every option sends your gift directly to The Arc of the United States. joy.us takes nothing.</div>
+                  <div class="give-grid">
+                    <a class="give-btn primary" href="https://www.every.org/" target="_blank" rel="noopener">
+                      <span class="g-name">Give via Every.org</span><span class="g-note">0% platform fees</span>
+                    </a>
+                    <a class="give-btn" href="https://www.daffy.org/" target="_blank" rel="noopener">
+                      <span class="g-name">Give via Daffy</span><span class="g-note">donor-advised fund</span>
+                    </a>
+                    <a class="give-btn" href="https://thearc.org" target="_blank" rel="noopener">
+                      <span class="g-name">Give on their site</span><span class="g-note">directly to the charity</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="car-slide" id="special-olympics" role="group" aria-roledescription="slide" aria-label="4 of 4: Special Olympics">
+            <div class="profile">
+              <div class="profile-head">
+                <div>
+                  <div class="name">Special Olympics</div>
+                  <span class="tag">Intellectual disabilities · Worldwide</span>
+                </div>
+                <div class="verified">✓ Vetted for efficiency</div>
+              </div>
+              <div class="profile-body">
+                <p class="desc">Special Olympics provides year-round sports training and competition for children and adults with intellectual disabilities, building health, confidence, and inclusion.</p>
+                <div class="eff">
+                  <div class="box"><div class="n">86%</div><div class="l">to programs</div></div>
+                  <div class="box"><div class="n">1968</div><div class="l">founded</div></div>
+                  <div class="box"><div class="n">Global</div><div class="l">where they work</div></div>
+                </div>
+
+                <div class="give">
+                  <h3>Ways to give</h3>
+                  <div class="sub">Every option sends your gift directly to Special Olympics. joy.us takes nothing.</div>
+                  <div class="give-grid">
+                    <a class="give-btn primary" href="https://www.every.org/" target="_blank" rel="noopener">
+                      <span class="g-name">Give via Every.org</span><span class="g-note">0% platform fees</span>
+                    </a>
+                    <a class="give-btn" href="https://www.daffy.org/" target="_blank" rel="noopener">
+                      <span class="g-name">Give via Daffy</span><span class="g-note">donor-advised fund</span>
+                    </a>
+                    <a class="give-btn" href="https://www.specialolympics.org" target="_blank" rel="noopener">
+                      <span class="g-name">Give on their site</span><span class="g-note">directly to the charity</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+        <button type="button" class="car-arrow next" aria-label="Next charity">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 5 16 12 9 19"/></svg>
+        </button>
+        <div class="car-nav">
+          <div class="car-dots">
+              <button type="button" class="car-dot" aria-label="Show InReach NC"></button>
+              <button type="button" class="car-dot" aria-label="Show Nevins Inc"></button>
+              <button type="button" class="car-dot" aria-label="Show The Arc of the United States"></button>
+              <button type="button" class="car-dot" aria-label="Show Special Olympics"></button>
+          </div>
+          <div class="car-count" aria-live="polite">1 of 4</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <div class="foot-top">
+      <a class="logo" href="index.html">
+        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <g fill="none" stroke="#E2A23E" stroke-width="2.6" stroke-linecap="round">
+            <line x1="24" y1="4" x2="24" y2="11"/><line x1="24" y1="37" x2="24" y2="44"/>
+            <line x1="4" y1="24" x2="11" y2="24"/><line x1="37" y1="24" x2="44" y2="24"/>
+            <line x1="10" y1="10" x2="15" y2="15"/><line x1="33" y1="33" x2="38" y2="38"/>
+            <line x1="38" y1="10" x2="33" y2="15"/><line x1="15" y1="33" x2="10" y2="38"/>
+          </g>
+          <circle cx="24" cy="24" r="8.5" fill="#E2A23E"/>
+        </svg>
+        <span>joy.us</span>
+      </a>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="charity-profiles.html">Charity Profiles</a>
+        <a href="goodness-lists.html">Goodness Lists</a>
+      <a href="archive.html">Inspiration Bank</a>
+      </nav>
+    </div>
+    <div class="foot-note">
+      <span class="pledge">We curate efficient charities and point you to give directly — joy.us never handles your money.</span>
+      <span>© <span id="yr"></span> joy.us</span>
+    </div>
+  </footer>
+
+<script>
+  var hdr=document.getElementById('hdr'),hero=document.getElementById('pageHero');
+  function onScroll(){window.scrollY>hero.offsetHeight-90?hdr.classList.add('scrolled'):hdr.classList.remove('scrolled');}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  document.getElementById('yr').textContent=new Date().getFullYear();
+
+  /* profile carousel */
+  (function(){
+    var car=document.getElementById('profiles');
+    if(!car)return;
+    var viewport=car.querySelector('.car-viewport'),track=car.querySelector('.car-track');
+    var slides=[].slice.call(car.querySelectorAll('.car-slide'));
+    var dots=[].slice.call(car.querySelectorAll('.car-dot'));
+    var count=car.querySelector('.car-count');
+    var n=slides.length,cur=0;
+
+    function go(i,updateHash){
+      cur=(i%n+n)%n;
+      track.style.transform='translateX('+(-100*cur)+'%)';
+      viewport.scrollLeft=0;
+      slides.forEach(function(s,k){
+        var on=k===cur;
+        s.setAttribute('aria-hidden',on?'false':'true');
+        if(on)s.removeAttribute('inert');else s.setAttribute('inert','');
+      });
+      dots.forEach(function(d,k){d.setAttribute('aria-current',k===cur?'true':'false');});
+      count.textContent=(cur+1)+' of '+n;
+      if(updateHash&&history.replaceState)history.replaceState(null,'','#'+slides[cur].id);
+    }
+    function fromHash(){
+      var id=decodeURIComponent(location.hash.slice(1));
+      for(var k=0;k<n;k++)if(slides[k].id===id){go(k,false);reveal();return true;}
+      return false;
+    }
+    function reveal(){
+      var top=car.getBoundingClientRect().top+window.scrollY-90;
+      window.scrollTo({top:Math.max(0,top),behavior:'instant'});
+    }
+
+    car.querySelector('.car-arrow.prev').addEventListener('click',function(){go(cur-1,true);});
+    car.querySelector('.car-arrow.next').addEventListener('click',function(){go(cur+1,true);});
+    dots.forEach(function(d,k){d.addEventListener('click',function(){go(k,true);});});
+
+    // keyboard: arrow keys while the carousel is on screen (not while typing)
+    document.addEventListener('keydown',function(e){
+      if(e.key!=='ArrowLeft'&&e.key!=='ArrowRight')return;
+      if(e.altKey||e.ctrlKey||e.metaKey||e.shiftKey)return;
+      var t=e.target;
+      if(t&&(t.isContentEditable||/^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)))return;
+      var r=car.getBoundingClientRect();
+      if(!car.contains(t)&&(r.bottom<0||r.top>window.innerHeight))return;
+      e.preventDefault();
+      go(cur+(e.key==='ArrowRight'?1:-1),true);
+    });
+
+    // touch swipe
+    var x0=null,y0=null;
+    viewport.addEventListener('touchstart',function(e){if(e.touches.length===1){x0=e.touches[0].clientX;y0=e.touches[0].clientY;}},{passive:true});
+    viewport.addEventListener('touchend',function(e){
+      if(x0===null)return;
+      var dx=e.changedTouches[0].clientX-x0,dy=e.changedTouches[0].clientY-y0;
+      x0=y0=null;
+      if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.5)go(cur+(dx<0?1:-1),true);
+    },{passive:true});
+    // keep the clipped viewport from being scrolled sideways by anchor jumps or focus
+    viewport.addEventListener('scroll',function(){viewport.scrollLeft=0;});
+
+    car.classList.add('ready');
+    window.addEventListener('hashchange',fromHash);
+    if(fromHash()){
+      // re-align once fonts and layout have settled
+      window.addEventListener('load',function(){if(slides[cur].id===location.hash.slice(1))reveal();});
+      if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){if(slides[cur].id===location.hash.slice(1))reveal();});
+    }else go(0,false);
+  })();
+</script>
+</body>
+</html>
